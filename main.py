@@ -11,6 +11,7 @@ from langchain_openai import ChatOpenAI
 from langchain_community.vectorstores import Chroma
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.runnables import RunnablePassthrough
+from langchain_core.runnables import RunnableLambda
 
 
 def load_documents_from_dir(data_dir: str):
@@ -79,16 +80,21 @@ Question: {question}"""
     
     prompt = ChatPromptTemplate.from_template(template)
     
+    retriever_chain = retriever | format_docs
+    
+
     chain = (
-        {"context": retriever | format_docs, "question": RunnablePassthrough()}
+        {"context": retriever | format_docs | RunnableLambda(print_context), "question": RunnablePassthrough()}
         | prompt
         | llm
     )
 
+    GREEN = "\033[92m"
+    RESET = "\033[0m"
     print("Chat ready. Type your question (or 'exit' to quit).")
     while True:
         try:
-            query = input("You: ")
+            query = input(f"{GREEN}You: ")
         except (KeyboardInterrupt, EOFError):
             print("\nExiting chat.")
             break
@@ -98,18 +104,26 @@ Question: {question}"""
             print("Goodbye.")
             break
         try:
+            context = retriever_chain.invoke(query)
+            print(f"\033[94m{context}{RESET}")
+
             result = chain.invoke(query)
             answer = result.content if hasattr(result, 'content') else str(result)
-            print("Assistant:", answer)
+            print(f"\033[91m Assistant: {answer} {RESET}")
         except Exception as e:
             print(f"Error processing query: {e}")
 
 def format_docs(docs):
     return "\n\n".join(doc.page_content for doc in docs)
 
+def print_context(x):
+    YELLOW = "\033[93m"
+    RESET = "\033[0m"
+    print(f"{YELLOW}{x}{RESET}")
+    return x
+
 def main():
     load_dotenv()
-    print(os.getenv("OPENAI_API_KEY"))
     parser = argparse.ArgumentParser(description="Simple RAG with LangChain + Chroma + OpenAI")
     parser.add_argument("--data_dir", type=str, default="./data", help="Directory containing PDFs and text files to ingest")
     parser.add_argument("--persist_dir", type=str, default="./chroma_db", help="Directory to persist Chroma DB")
