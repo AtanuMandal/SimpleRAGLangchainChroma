@@ -1,0 +1,83 @@
+<mxfile host="app.diagrams.net" pages="2">
+  <diagram name="Page-1" id="tBjK8RiiF4ercmtYdpJF">
+    <mxGraphModel dx="1414" dy="811" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="iqqBQJNZOB9gKMpKUcE4-1" parent="1" style="whiteSpace=wrap;strokeWidth=2;fillColor=light-dark(#eeeeee,#1f2020);strokeColor=light-dark(#999999,#cccccc);fontColor=light-dark(#333333,#cccccc);fontStyle=1;verticalAlign=top;align=left;" value="    &#xa;     Middleware Interceptor" vertex="1">
+          <mxGeometry height="397" width="629" x="73" y="113" as="geometry" />
+        </mxCell>
+        <mxCell id="iqqBQJNZOB9gKMpKUcE4-2" parent="1" style="rounded=1;whiteSpace=wrap;arcSize=50;strokeWidth=2;fillColor=#e1f5fe;strokeColor=#01579b;fontColor=light-dark(#333333,#cccccc);" value="LLM Generates Tool Call" vertex="1">
+          <mxGeometry height="39" width="196" x="234" y="48" as="geometry" />
+        </mxCell>
+        <mxCell id="iqqBQJNZOB9gKMpKUcE4-3" parent="1" style="rhombus;strokeWidth=2;whiteSpace=wrap;fillColor=#1ba1e2;strokeColor=#006EAF;fontColor=#ffffff;" value="Tool Cache Middleware" vertex="1">
+          <mxGeometry height="66" width="219" x="223" y="134" as="geometry" />
+        </mxCell>
+        <mxCell id="iqqBQJNZOB9gKMpKUcE4-4" parent="1" style="whiteSpace=wrap;strokeWidth=2;fillColor=#1ba1e2;strokeColor=#006EAF;fontColor=#ffffff;" value="Generate Cache Key&#xa;&#39;tool_name&#39; + &#39;args&#39;" vertex="1">
+          <mxGeometry height="40" width="190" x="490" y="147" as="geometry" />
+        </mxCell>
+        <mxCell id="iqqBQJNZOB9gKMpKUcE4-5" parent="1" style="rhombus;strokeWidth=2;whiteSpace=wrap;fillColor=#1ba1e2;strokeColor=#006EAF;fontColor=#ffffff;" value="Key in Cache?" vertex="1">
+          <mxGeometry height="70" width="152" x="508.5" y="230" as="geometry" />
+        </mxCell>
+        <mxCell id="iqqBQJNZOB9gKMpKUcE4-6" parent="1" style="whiteSpace=wrap;strokeWidth=2;fillColor=#d4edda;strokeColor=#28a745;fontColor=light-dark(#333333,#cccccc);" value="Fetch Cached ToolMessage" vertex="1">
+          <mxGeometry height="54" width="190" x="490" y="350" as="geometry" />
+        </mxCell>
+        <mxCell id="iqqBQJNZOB9gKMpKUcE4-7" parent="1" style="rounded=1;whiteSpace=wrap;arcSize=50;strokeWidth=2;fillColor=#e1f5fe;strokeColor=#01579b;fontColor=light-dark(#333333,#cccccc);" value="Return Result to LLM" vertex="1">
+          <mxGeometry height="39" width="173" x="300" y="440" as="geometry" />
+        </mxCell>
+        <mxCell id="iqqBQJNZOB9gKMpKUcE4-8" parent="1" style="whiteSpace=wrap;strokeWidth=2;fillColor=#f8d7da;strokeColor=#dc3545;fontColor=light-dark(#333333,#cccccc);" value="Execute Actual Tool Logic" vertex="1">
+          <mxGeometry height="54" width="202.5" x="130" y="238" as="geometry" />
+        </mxCell>
+        <mxCell id="iqqBQJNZOB9gKMpKUcE4-9" parent="1" style="whiteSpace=wrap;strokeWidth=2;fillColor=#1ba1e2;strokeColor=#006EAF;fontColor=#ffffff;" value="Save Result to Cache Storage" vertex="1">
+          <mxGeometry height="40" width="200" x="130" y="329.5" as="geometry" />
+        </mxCell>
+        <mxCell id="iqqBQJNZOB9gKMpKUcE4-10" edge="1" parent="1" source="iqqBQJNZOB9gKMpKUcE4-2" style="curved=1;startArrow=none;endArrow=block;exitX=0.5;exitY=1;entryX=0.5;entryY=0;rounded=0;" target="iqqBQJNZOB9gKMpKUcE4-3" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="iqqBQJNZOB9gKMpKUcE4-11" edge="1" parent="1" source="iqqBQJNZOB9gKMpKUcE4-3" style="curved=1;startArrow=none;endArrow=block;exitX=1;exitY=0.5;rounded=0;exitDx=0;exitDy=0;" target="iqqBQJNZOB9gKMpKUcE4-4" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="iqqBQJNZOB9gKMpKUcE4-12" edge="1" parent="1" source="iqqBQJNZOB9gKMpKUcE4-4" style="curved=1;startArrow=none;endArrow=block;exitX=0.5;exitY=1;entryX=0.5;entryY=0;rounded=0;" target="iqqBQJNZOB9gKMpKUcE4-5" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="iqqBQJNZOB9gKMpKUcE4-13" edge="1" parent="1" source="iqqBQJNZOB9gKMpKUcE4-5" style="curved=1;startArrow=none;endArrow=classic;entryX=0.5;entryY=0;rounded=0;endFill=1;edgeStyle=orthogonalEdgeStyle;" target="iqqBQJNZOB9gKMpKUcE4-6" value="Yes (Hit)">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="500" y="290" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="iqqBQJNZOB9gKMpKUcE4-14" edge="1" parent="1" source="iqqBQJNZOB9gKMpKUcE4-6" style="curved=1;startArrow=none;endArrow=block;exitX=0.5;exitY=1;entryX=1;entryY=0.5;rounded=0;edgeStyle=orthogonalEdgeStyle;entryDx=0;entryDy=0;" target="iqqBQJNZOB9gKMpKUcE4-7" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="iqqBQJNZOB9gKMpKUcE4-15" edge="1" parent="1" source="iqqBQJNZOB9gKMpKUcE4-5" style="startArrow=none;endArrow=block;entryX=1;entryY=0.5;rounded=0;entryDx=0;entryDy=0;edgeStyle=orthogonalEdgeStyle;curved=1;exitX=0.049;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;" target="iqqBQJNZOB9gKMpKUcE4-8" value="No (Miss)">
+          <mxGeometry relative="1" x="0.168" y="-2" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="iqqBQJNZOB9gKMpKUcE4-16" edge="1" parent="1" source="iqqBQJNZOB9gKMpKUcE4-8" style="curved=1;startArrow=none;endArrow=block;exitX=0.5;exitY=1;entryX=0.5;entryY=0;rounded=0;" target="iqqBQJNZOB9gKMpKUcE4-9" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="iqqBQJNZOB9gKMpKUcE4-17" edge="1" parent="1" source="iqqBQJNZOB9gKMpKUcE4-9" style="curved=1;startArrow=none;endArrow=block;exitX=0.5;exitY=1;rounded=0;edgeStyle=orthogonalEdgeStyle;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="iqqBQJNZOB9gKMpKUcE4-7" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="454" y="440" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="AKHDOeb2BhO6xBAWoPCG" name="Page-2">
+    <mxGraphModel dx="1414" dy="811" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
